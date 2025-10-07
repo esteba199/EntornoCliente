@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 4</title>
+    <style>
+      body { font-family: Arial; margin: 20px; }
+      h2 { color: #2a5d84; }
+      div { margin-top: 10px; }
+      img { width: 200px; height: auto; display: block; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <!-- Ejercicio 1.4 -->
+    <h2>Ejercicio 1.4</h2>
+    <select id="opciones" onchange="mostrarImagen()">
+        <option value="">Selecciona una opción</option>
+        <option value="gato">Montañas</option>
+        <option value="perro">Bosque</option>
+        <option value="pajaro">lago</option>
+    </select>
+<img id="imagenVisual" src="" alt="Vista previa" style="display:none; margin-top:10px;">
+
+    <script>
+        function mostrarImagen() {
+            let opcion = document.getElementById("opciones").value;
+            let imagen = document.getElementById("imagenVisual");
+            if (opcion === "gato") {
+                imagen.src = "https://images.pexels.com/photos/572897/pexels-photo-572897.jpeg";
+                imagen.style.display = "block";            } else if (opcion === "perro") {
+                imagen.src = "https://images.pexels.com/photos/414171/pexels-photo-414171.jpeg";
+                imagen.style.display = "block";
+            } else if (opcion === "pajaro") {
+                imagen.src = "https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg";
+                imagen.style.display = "block";
+            } else {
+                imagen.src = "";
+                imagen.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

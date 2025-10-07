@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ejercicio 2</title>
+<style>
+  body { font-family: Arial; margin: 20px; }
+  h2 { color: #2a5d84; }
+  div { margin-top: 10px; }
+  img { width: 200px; height: auto; display: block; margin-top: 10px; }
+</style>
+</head>
+<body>
+
+<!-- Ejercicio 1.2 -->
+<h2>Ejercicio 1.2</h2>
+<select id="colores" onchange="cambiarColor()">
+  <option value="">Selecciona un color</option>
+  <option value="red">Rojo</option>
+  <option value="green">Verde</option>
+  <option value="blue">Azul</option>
+</select>
+
+<script>
+function cambiarColor() {
+  let color = document.getElementById("colores").value;
+console.log("color seleccionado:", color);
+    document.body.style.backgroundColor = color;
+}
+</script>
+</body> 
+</html>
