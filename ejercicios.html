@@ -1,11 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ejercicios de la Unidad 1.9</title>
+<style>
+  body { font-family: Arial; margin: 20px; }
+  h2 { color: #2a5d84; }
+  div { margin-top: 10px; }
+  img { width: 200px; height: auto; display: block; margin-top: 10px; }
+</style>
 </head>
 <body>
-    
+
+<!-- Ejercicio 1.1 -->
+<h2>Ejercicio 1.1</h2>
+<p id="parrafo1"></p>
+<button onclick="ejercicio11()">Solicitar dato</button>
+
+<script>
+function ejercicio11() {
+  let dato = prompt("Introduce un texto:");
+  document.getElementById("parrafo1").textContent = dato;
+}
+</script>
+
 </body>
 </html>
