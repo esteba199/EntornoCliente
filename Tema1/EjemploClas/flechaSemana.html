@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejemplo JavaScript - map, reduce, y búsqueda de nombres largos/cortos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f4f6;
+      padding: 20px;
+    }
+    h2 {
+      color: #333;
+    }
+    .resultado {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 15px;
+      margin-top: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    code {
+      color: #d63384;
+      background-color: #f8f9fa;
+      padding: 2px 5px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Ejemplo de uso de <code>map()</code> y <code>reduce()</code></h2>
+
+  <div class="resultado" id="resultadoMap"></div>
+  <div class="resultado" id="resultadoReduce"></div>
+  <div class="resultado" id="resultadoLargos"></div>
+
+  <script>
+    // Nombres con distintas longitudes
+    let nombres = ['Ana', 'Maximiliano', 'Sol', 'Valentina', 'Eli', 'Alejandro', 'Paz'];
+
+    // Obtenemos las longitudes
+    let longitudes = nombres.map(nom => nom.length);
+    console.log("Longitudes:", longitudes);
+
+    // Mostramos longitudes
+    document.getElementById("resultadoMap").textContent =
+      "Longitudes de los nombres (" + nombres.join(", ") + "): " + longitudes.join(", ");
+
+    // Suma total de longitudes
+    let sumaNombres = nombres.reduce((acumulador, elemento) => acumulador + elemento.length, 0);
+    console.log("Suma total:", sumaNombres);
+
+    document.getElementById("resultadoReduce").textContent =
+      "Suma total de longitudes: " + sumaNombres;
+
+    // Encontrar el nombre más largo y más corto
+    let nombreMasLargo = nombres.reduce((a, b) => (a.length >= b.length ? a : b));
+    let nombreMasCorto = nombres.reduce((a, b) => (a.length <= b.length ? a : b));
+
+    console.log("Más largo:", nombreMasLargo);
+    console.log("Más corto:", nombreMasCorto);
+
+    document.getElementById("resultadoLargos").innerHTML =
+      `<strong>Nombre más largo:</strong> ${nombreMasLargo} (${nombreMasLargo.length} letras)<br>
+       <strong>Nombre más corto:</strong> ${nombreMasCorto} (${nombreMasCorto.length} letras)`;
+  </script>
+</body>
+</html>
