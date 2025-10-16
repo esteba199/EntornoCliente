@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Función Flecha - Números Aleatorios</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .container {
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        
+        input {
+            padding: 8px;
+            margin: 10px;
+            width: 100px;
+        }
+        
+        button {
+            padding: 8px 15px;
+            margin: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .resultado {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e8f5e8;
+            border-radius: 4px;
+        }
+        
+        .codigo {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f5f5f5;
+            border-left: 4px solid #4CAF50;
+            text-align: left;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Función Flecha - Números Aleatorios</h1>
+        
+        <div>
+            <label for="maxValue">Número máximo:</label>
+            <input type="number" id="maxValue" placeholder="Ej: 100" min="1">
+        </div>
+        
+        <button onclick="generarAleatorio()">Generar Aleatorio</button>
+        
+        <div id="resultado" class="resultado">
+            El resultado aparecerá aquí
+        </div>
+        
+        <div class="codigo">
+            <strong>Código de la función flecha:</strong><br><br>
+            <code>
+                const generarNumeroAleatorio = (maximo) => {<br>
+                &nbsp;&nbsp;return Math.floor(Math.random() * maximo) + 1;<br>
+                };
+            </code>
+        </div>
+    </div>
+
+    <script>
+        // 1. DEFINICIÓN DE LA FUNCIÓN FLECHA
+        // Función flecha que recibe un valor entero y retorna un número aleatorio entre 1 y ese valor
+        const generarNumeroAleatorio = (maximo) => {
+            return Math.floor(Math.random() * maximo) + 1;
+        };
+
+        // Función para generar y mostrar el número aleatorio
+        function generarAleatorio() {
+            const maxValue = parseInt(document.getElementById('maxValue').value);
+            
+            // Validar la entrada
+            if (isNaN(maxValue) || maxValue < 1) {
+                alert('Por favor, ingresa un número válido mayor que 0');
+                return;
+            }
+            
+            // Llamar a la función flecha
+            const numeroAleatorio = generarNumeroAleatorio(maxValue);
+            
+            // Mostrar el resultado
+            document.getElementById('resultado').innerHTML = 
+                `<strong>Número aleatorio entre 1 y ${maxValue}: ${numeroAleatorio}</strong>`;
+        }
+    </script>
+</body>
+</html>
