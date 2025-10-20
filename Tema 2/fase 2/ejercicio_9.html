@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calcular Proxima Navidad</title>
+</head>
+<!--9. Escriba un programa JavaScript para calcular los días que quedan hasta la
+próxima Navidad.-->
+<body>
+<script>
+    let hoy = new Date();
+    let navidad = new Date(hoy.getFullYear(), 11, 25); // Mes 11 es diciembre
+    if (hoy > navidad) {
+        navidad.setFullYear(hoy.getFullYear() + 1);
+    }
+    let diferenciaEnMilisegundos = navidad - hoy;
+    let diasRestantes = Math.ceil(diferenciaEnMilisegundos / (1000 * 60 * 60 * 24));
+    alert("Faltan " + diasRestantes + " días para la próxima Navidad.");
+</script>
+</body>
+</html>
