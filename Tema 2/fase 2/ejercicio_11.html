@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperatura</title>
+</head>
+<!--11. Escriba un programa JavaScript para convertir temperaturas desde y hacia
+Celsius, Fahrenheit.
+[Fórmula: c / 5 = (f-32) / 9 [donde c = temperatura en Celsius yf = temperatura en
+Fahrenheit]
+Salida esperada :
+60 ° C es 140 ° F
+45 ° F es 7.222222222222222 ° C-->
+<body>
+    <script>
+        let celsius = parseFloat(prompt("Ingrese la temperatura en Celsius:"));
+        let fahrenheit = (celsius * 9/5) + 32;
+        alert(celsius + " °C es " + fahrenheit + " °F");
+
+        let fahrenheitInput = parseFloat(prompt("Ingrese la temperatura en Fahrenheit:"));
+        let celsiusConverted = (fahrenheitInput - 32) * 5/9;
+        alert(fahrenheitInput + " °F es " + celsiusConverted + " °C");
+        3
+    </script>
+</body>
+</html>

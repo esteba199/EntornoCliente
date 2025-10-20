@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presupuesto</title>
+</head>
+<!-- 3 amigos estan comido en un restaturante y tiene que pagar la factura,
+ la factura da un valor aleatorio, si algunos de los tres amigos se acerca al valor
+ del precio de la facctura ese gana y el que menos se acerque paga la factura-->
+<body>
+    <script>
+        let factura = Math.floor(Math.random() * 100) + 1;
+        let amigo1 = parseFloat(prompt("Amigo 1, ingrese su aproximación al valor de la factura:"));
+        let amigo2 = parseFloat(prompt("Amigo 2, ingrese su aproximación al valor de la factura:"));
+        let amigo3 = parseFloat(prompt("Amigo 3, ingrese su aproximación al valor de la factura:"));
+
+        let diferencia1 = Math.abs(factura - amigo1);
+        let diferencia2 = Math.abs(factura - amigo2);
+        let diferencia3 = Math.abs(factura - amigo3);
+
+        let ganador;
+        if (diferencia1 < diferencia2 && diferencia1 < diferencia3) {
+            ganador = "Amigo 1 gana!";
+        } else if (diferencia2 < diferencia1 && diferencia2 < diferencia3) {
+            ganador = "Amigo 2 gana!";
+        } else if (diferencia3 < diferencia1 && diferencia3 < diferencia2) {
+            ganador = "Amigo 3 gana!";
+        } else {
+            ganador = "Hay un empate entre los amigos.";
+        }
+
+        alert("El valor de la factura es: " + factura + "\n" + ganador);
+    </script>
+</body>
+</html>
