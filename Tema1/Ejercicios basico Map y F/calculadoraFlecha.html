@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora con Funciones Flecha</title>
+</head>
+<body>
+    <div class="calculator">
+        <h1>Calculadora con Funciones Flecha</h1>
+        
+        <div class="input-group">
+            <label for="num1">Primer número:</label>
+            <input type="number" id="num1" placeholder="Ingresa un número">
+        </div>
+        
+        <div class="input-group">
+            <label for="num2">Segundo número:</label>
+            <input type="number" id="num2" placeholder="Ingresa un número">
+        </div>
+        
+        <div class="buttons">
+            <button class="add" onclick="sumar()">Sumar (+)</button>
+            <button class="subtract" onclick="restar()">Restar (-)</button>
+            <button class="multiply" onclick="multiplicar()">Multiplicar (×)</button>
+            <button class="divide" onclick="dividir()">Dividir (÷)</button>
+        </div>
+        
+        <div class="result" id="resultado">
+            Resultado aparecerá aquí
+        </div>
+    </div>
+
+    <script>
+        // Funciones flecha para las operaciones
+        const sumar = () => {
+            const num1 = parseFloat(document.getElementById('num1').value);
+            const num2 = parseFloat(document.getElementById('num2').value);
+            const resultado = num1 + num2;
+            mostrarResultado(`${num1} + ${num2} = ${resultado}`);
+        };
+
+        const restar = () => {
+            const num1 = parseFloat(document.getElementById('num1').value);
+            const num2 = parseFloat(document.getElementById('num2').value);
+            const resultado = num1 - num2;
+            mostrarResultado(`${num1} - ${num2} = ${resultado}`);
+        };
+
+        const multiplicar = () => {
+            const num1 = parseFloat(document.getElementById('num1').value);
+            const num2 = parseFloat(document.getElementById('num2').value);
+            const resultado = num1 * num2;
+            mostrarResultado(`${num1} × ${num2} = ${resultado}`);
+        };
+
+        const dividir = () => {
+            const num1 = parseFloat(document.getElementById('num1').value);
+            const num2 = parseFloat(document.getElementById('num2').value);
+            
+            if (num2 === 0) {
+                mostrarResultado("Error: No se puede dividir por cero");
+            } else {
+                const resultado = num1 / num2;
+                mostrarResultado(`${num1} ÷ ${num2} = ${resultado}`);
+            }
+        };
+
+        // Función para mostrar el resultado
+        const mostrarResultado = (mensaje) => {
+            document.getElementById('resultado').textContent = mensaje;
+        };
+    </script>
+</body>
+</html>
