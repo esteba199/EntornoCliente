@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ocultar</title>
+</head>
+<!--6. Escriba una función de JavaScript para ocultar direcciones de correo
+electrónico y protegerlas de usuarios no autorizados.-->
+<body>
+    <script>
+        function ocultarEmail(email) {
+            let partes = email.split("@"); <!-- Dividir el email en nombre y dominio -->
+            let nombre = partes[0];
+            let dominio = partes[1];
+            let nombreOculto = nombre.substring(0, 2) + "...";  
+            return nombreOculto + "@" + dominio; 
+        }
+
+        let email = prompt("Ingrese una dirección de correo electrónico:");
+        let emailOculto = ocultarEmail(email);
+        alert("Dirección de correo electrónico oculta: " + emailOculto);
+    </script>
+</body>
+</html>

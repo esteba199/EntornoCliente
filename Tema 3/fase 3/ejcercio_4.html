@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>caracteres</title>
+</head>
+<!--4. Escriba una función de JavaScript para extraer un número específico de
+caracteres de una cadena.-->
+<body>
+    <script>
+        function extraerCaracteres(cadena, numCaracteres) {
+            return cadena.substring(0, numCaracteres);
+        }
+
+        let cadena = prompt("Ingrese una cadena de texto:");
+        let numCaracteres = parseInt(prompt("Ingrese el número de caracteres a extraer:"));
+
+        let resultado = extraerCaracteres(cadena, numCaracteres);
+        alert("Los primeros " + numCaracteres + " caracteres son: " + resultado);   
+    </script>
+</body>
+</html>
