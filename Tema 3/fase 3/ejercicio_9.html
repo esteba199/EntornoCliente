@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--9. Escriba una función de JavaScript para poner en mayúscula la primera letra 
+de cada palabra en una cadena-->
+</head>
+<body>
+    <script>
+        function capitalizarPalabras(cadena) {
+            let palabras = cadena.split(" "); // Dividir la cadena en palabras
+            for (let i = 0; i < palabras.length; i++) {
+                palabras[i] = palabras[i].charAt(0).toUpperCase() + palabras[i].slice(1).toLowerCase();
+            }
+            return palabras.join(" "); // Unir las palabras de nuevo en una cadena
+        }
+
+        let texto = prompt("Ingrese una cadena de texto:");
+        let textoCapitalizado = capitalizarPalabras(texto);
+        alert("Cadena con mayúscula en cada palabra: " + textoCapitalizado);
+    </script>
+</body>
+</html>
