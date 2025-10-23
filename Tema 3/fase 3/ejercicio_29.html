@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cadena console conso.log></console></title>
+    <!--29. Escriba una función de JavaScript para encontrar una palabra dentro de una cadena. 
+console.log (palabra_búsqueda('El zorro marrón', 'zorro'));
+ console.log (palabra_búsqueda ('aa, bb, aa', 'aa'));
+ Resultado:
+ "'zorro' se encontró 1 veces".
+ "'aa' se encontró 2 veces."-->
+</head>
+<body>
+    <script>
+        function palabra_busqueda(cadena, palabra) { // Función para contar apariciones de una palabra
+            let contador = 0; 
+            let posicion = cadena.indexOf(palabra); // Buscar la primera aparición de la palabra
+            while (posicion !== -1) { // Mientras se encuentre la palabra
+                contador++; // Incrementar el contador
+                posicion = cadena.indexOf(palabra, posicion + palabra.length); // Buscar la siguiente aparición
+            }
+            return "'" + palabra + "' se encontró " + contador + " veces."; // Devolver el resultado
+        }
+
+        console.log(palabra_busqueda('El zorro marrón', 'zorro'));
+        console.log(palabra_busqueda('aa, bb, aa', 'aa'));
+    </script>
+</body>
+</html>
