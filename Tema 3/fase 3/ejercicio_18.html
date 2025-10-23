@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aparicion</title>
+</head>
+<!--18. Escriba una función de JavaScript para contar la aparición de una 
+subcadena en una cadena. -->
+<body>
+    <script>
+        function contarSubcadena(cadena, subcadena) { // Función para contar apariciones de una subcadena
+            let contador = 0; // Inicializar el contador
+            let posicion = cadena.indexOf(subcadena); // Buscar la primera aparición de la subcadena
+            while (posicion !== -1) {
+                contador++; // Incrementar el contador
+                posicion = cadena.indexOf(subcadena, posicion + subcadena.length); // Buscar la siguiente aparición
+            }
+            return contador; 
+        }
+
+        let texto = prompt("Ingrese una cadena de texto:");
+        let subtexto = prompt("Ingrese la subcadena a buscar:");
+
+        let apariciones = contarSubcadena(texto, subtexto);  // Llamar a la función con los valores proporcionados
+        alert("La subcadena '" + subtexto + "' aparece " + apariciones + " veces en la cadena.");
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Cadena</title>
+</head>
+<!--14. Escriba una función de JavaScript para insertar una cadena dentro de una 
+cadena en una posición particular (el valor predeterminado es 1). 
+Ejemplo
+ (insert ('Estamos haciendo ejercicios.'));
+ (insert ('Estamos haciendo ejercicios.', 'JavaScript'));
+ (insert ('Estamos haciendo algunos ejercicios.', 'JavaScript', 18));
+ "Estamos haciendo ejercicios".
+ "JavaScript Estamos haciendo  ejercicios".
+ "Estamos haciendo algunos ejercicios de JavaScript".-->
+<body>
+    <script>
+        function insertarCadena(cadena, cadenaInsertar, posicion = 1) {
+            if (posicion < 1) posicion = 1; <!-- Asegurar que la posición no sea menor que 1 -->
+            if (posicion > cadena.length + 1) posicion = cadena.length + 1; // Asegurar que la posición no entre a la longitud de la cadena
+            return cadena.slice(0, posicion - 1) + cadenaInsertar + cadena.slice(posicion - 1); // Insertar la cadena en la posición especificada
+        }
+
+        let texto = prompt("Ingrese una cadena de texto:");
+        let textoAInsertar = prompt("Ingrese la cadena a insertar:");
+        let posicion = parseInt(prompt("Ingrese la posición para insertar la cadena (predeterminado es 1):"), 10);
+
+        let resultado = insertarCadena(texto, textoAInsertar, posicion);    // Llamar a la función con los valores proporcionados
+        alert("Cadena resultante: " + resultado);
+    </script>
+</body>
+</html>
