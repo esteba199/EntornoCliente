@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            margin-top: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            width: 200px;
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .resultados {
+            margin-top: 20px;
+            text-align: left;
+        }
+        .ganador {
+            font-size: 20px;
+            font-weight: bold;
+            color: green;
+        }
+    </style>
+</head>               
+<body>
+ <h1>Adivina la Contraseña</h1>
+  <div class="container">
+    <p>3 jugadores intentan adivinar la contraseña secreta.<br>
+    Vocal = 1 punto | Consonante = 2 puntos | Número = 3 puntos</p>
+
+    <input type="text" id="jugadorInput" placeholder="Escribe tu intento" />
+    <button onclick="jugar()">Enviar</button>
+
+    <div class="resultados" id="resultados"></div>
+  </div>    
+   <script>
+    const password = "mambich542hh";  // Contraseña 
+    let jugadorActual = 1; // Contador de jugadores
+    const totalJugadores = 3;
+    let resultados = []; // Almacenar resultados de cada jugador
+
+    function calcularPuntos(intent) { // Calcular puntos basados en el intento
+      let puntos = 0;
+      let aciertos = []; // Letras acertadas
+
+      for (let i = 0; i < intent.length; i++) { // Recorrer cada carácter del intento
+        const char = intent[i];  // Carácter actual
+        if (password.includes(char)) { // Verificar si el carácter está en la contraseña    
+          aciertos.push(char); // Agregar a la lista de aciertos
+          if (/[aeiouAEIOU]/.test(char)) { 
+            puntos += 1;
+          } else if (/[0-9]/.test(char)) { // Verificar si es un número
+            puntos += 3;
+          } else if (/[a-zA-Z]/.test(char)) { // Verificar si es una consonante
+            puntos += 2; 
+          }
+        }
+      }
+
+      return { puntos, aciertos }; // Devolver puntos y letras acertadas
+    }
+
+    function jugar() {
+      const input = document.getElementById("jugadorInput"); // Obtener el input del jugador
+      const intento = input.value.trim(); // Leer y limpiar el intento
+
+      if (intento === "") { // Validar entrada vacía
+        alert("Por favor, escribe una palabra antes de continuar.");
+        return;     // Salir de la función si la entrada está vacía
+      }
+
+      const { puntos, aciertos } = calcularPuntos(intento); // Calcular puntos y aciertos
+      resultados.push({ jugador: jugadorActual, intento, puntos, aciertos });
+
+      mostrarResultados();
+
+      input.value = ""; // Limpiar el input para el siguiente jugador
+      jugadorActual++; // Pasar al siguiente jugador
+
+      if (jugadorActual > totalJugadores) { //  Finalizar el juego después del tercer jugador
+        finalizarJuego(); 
+      } else {  // Indicar el turno del siguiente jugador
+        alert(`Turno del Jugador ${jugadorActual}`);
+      }
+    }
+
+    function mostrarResultados() { // Mostrar resultados actuales
+      const div = document.getElementById("resultados");
+      div.innerHTML = resultados.map(r => ` 
+        <p><strong>Jugador ${r.jugador}</strong> → "${r.intento}"<br>
+        Letras acertadas: ${r.aciertos.join(", ") || "Ninguna"}<br>
+        Puntos: ${r.puntos}</p>
+      `).join("<hr>"); // Separar cada resultado con una línea horizontal
+    }
+
+    function finalizarJuego() { // Determinar y mostrar el ganador
+      resultados.sort((a, b) => b.puntos - a.puntos); // Ordenar resultados por puntos
+      const ganador = resultados[0]; // Primer lugar
+
+      const div = document.getElementById("resultados");
+      div.innerHTML += `
+        <hr><p class="ganador">Ganador: Jugador ${ganador.jugador} con ${ganador.puntos} puntos</p>
+        <p>La contraseña era: <strong>${password}</strong></p> 
+      `; // Mostrar ganador y contraseña
+
+      document.getElementById("jugadorInput").disabled = true; 
+    }
+  </script>
+</body>
+</html>
