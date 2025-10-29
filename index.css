@@ -15,7 +15,7 @@ body {
     position: relative;
 }
 
-/* 🟢 Fondo dinámico con animaciones */
+/* Fondo dinámico con animaciones */
 body::before {
     content: "";
     position: absolute;
@@ -38,7 +38,7 @@ body::before {
     }
 }
 
-/* 🟣 ASIDE con efecto glassmorphism */
+/* ASIDE con efecto glassmorphism */
 aside {
     width: 270px;
     height: 100vh;
@@ -59,7 +59,7 @@ aside::-webkit-scrollbar {
     display: none;
 }
 
-/* 🟠 Contenido del aside */
+/* Contenido del aside */
 .container {
     padding: 10px;
 }
@@ -107,7 +107,7 @@ a:hover {
     color: #00eaff;
 }
 
-/* 🔵 Contenedor de la página principal */
+/*  Contenedor de la página principal */
 main {
     margin-left: 290px;
     width: calc(100% - 290px);
@@ -127,7 +127,7 @@ iframe {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
-/* 🔴 Botón flotante */
+/* Botón flotante */
 .fab {
     position: fixed;
     bottom: 30px;
@@ -153,7 +153,7 @@ iframe {
     font-size: 24px;
 }
 
-/* 🔄 Animación del botón flotante */
+/* Animación del botón flotante */
 @keyframes bounce {
     0%, 100% {
         transform: translateY(0);
