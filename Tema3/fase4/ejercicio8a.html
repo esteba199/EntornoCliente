@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Días</title>
+</head>
+<body>
+    <h1>Calculadora de Diferencia entre Fechas</h1>
+    
+    <div class="form-group">
+        <label for="fecha1">Fecha 1:</label>
+        <input type="date" id="fecha1" value="2023-01-01">
+    </div>
+    
+    <div class="form-group">
+        <label for="fecha2">Fecha 2:</label>
+        <input type="date" id="fecha2" value="2023-01-10">
+    </div>
+    <div id="resultado"></div>
+
+    <script>
+        function diferenciaEnDias(fecha1, fecha2) {
+            const unDia = 1000 * 60 * 60 * 24; // Milisegundos en un día
+            const diferencia = Math.abs(fecha2 - fecha1);
+            return Math.floor(diferencia / unDia);
+        }
+
+        function calcularDiferencia() {
+            const fecha1Input = document.getElementById('fecha1').value;
+            const fecha2Input = document.getElementById('fecha2').value;
+            const resultadoDiv = document.getElementById('resultado');
+            
+            if (!fecha1Input || !fecha2Input) {
+                resultadoDiv.innerHTML = '<p style="color: red;">Por favor selecciona ambas fechas</p>';
+                return;
+            }
+            
+            const fecha1 = new Date(fecha1Input);
+            const fecha2 = new Date(fecha2Input);
+            const dias = diferenciaEnDias(fecha1, fecha2);
+            
+            resultadoDiv.innerHTML = `
+                <div class="resultado">
+                    <h3>Resultado:</h3>
+                    <p><strong>Fecha 1:</strong> ${fecha1.toLocaleDateString()}</p>
+                    <p><strong>Fecha 2:</strong> ${fecha2.toLocaleDateString()}</p>
+                </div>
+            `;
+        }
+
+        // Calcular automáticamente cuando cambien las fechas
+        document.getElementById('fecha1').addEventListener('change', calcularDiferencia);
+        document.getElementById('fecha2').addEventListener('change', calcularDiferencia);
+
+        // Calcular al cargar la página
+        window.onload = calcularDiferencia;
+    </script>
+</body>
+</html>

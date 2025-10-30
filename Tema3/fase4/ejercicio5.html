@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Unir Array</title>
+</head>
+<body>
+    <h2>Unir Array en Cadena</h2>
+    
+    <div id="resultado"></div>
+
+    <script>
+        function unirArray(array, separador) {
+            return array.join(separador);
+        }
+
+        // Ejemplo de uso
+        const miArray = ['Hola', 'mama', 'como', 'estas'];
+        const resultado = unirArray(miArray, ' ');
+        
+        document.getElementById('resultado').innerHTML = 
+            `<p>Array: [${miArray}]</p>
+             <p>Cadena: "${resultado}"</p>`;
+    </script>
+</body>
+</html>

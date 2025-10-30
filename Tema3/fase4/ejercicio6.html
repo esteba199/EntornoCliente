@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valor Más Alto</title>
+</head>
+<body>
+    <h1>Valor Más Alto en un Array</h1>
+    
+    <div id="resultados"></div>
+
+    <script>
+        function valorMasAlto(array) {
+            return Math.max(...array);
+        }
+
+        // Ejemplos de uso
+        const resultadosDiv = document.getElementById('resultados');
+        
+        const ejemplos = [
+            [11, 3, 16, 90],
+            [5, 2, 8, 1],
+            [100, 45, 23, 67],
+            [-5, -2, -10, -1]
+        ];
+
+        ejemplos.forEach(array => {
+            const valorMaximo = valorMasAlto(array);
+            
+            const p = document.createElement('p');
+            p.textContent = `Array [${array}] → Valor más alto: ${valorMaximo}`;
+            resultadosDiv.appendChild(p);
+        });
+    </script>
+</body>
+</html>

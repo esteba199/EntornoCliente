@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Días del Mes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .resultado {
+            background-color: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculadora de Días del Mes</h1>
+    
+    <div id="resultados"></div>
+        <script>
+        function diasDelMes(mes, año) {
+            return new Date(año, mes, 0).getDate();
+        }
+
+        function obtenerNombreMes(mes) {
+            const nombresMeses = [
+                "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+                "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+            ];
+            return nombresMeses[mes - 1] || "Mes inválido";
+        }
+
+        function mostrarEjemplos() {
+            const resultadosDiv = document.getElementById('resultados');
+            
+            // Ejemplos predefinidos
+            const ejemplos = [
+                { mes: 1, año: 2023 },
+                { mes: 2, año: 2023 },
+                { mes: 2, año: 2024 },
+                { mes: 4, año: 2023 }
+            ];
+
+            ejemplos.forEach(ejemplo => {
+                const dias = diasDelMes(ejemplo.mes, ejemplo.año);
+                const nombreMes = obtenerNombreMes(ejemplo.mes);
+                
+                const resultadoDiv = document.createElement('div');
+                resultadoDiv.className = 'resultado';
+                resultadoDiv.innerHTML = `
+                    <strong>${nombreMes} ${ejemplo.año}:</strong> ${dias} días
+                `;
+                resultadosDiv.appendChild(resultadoDiv);
+            });
+        }
+
+        window.onload = mostrarEjemplos;
+        
+    </script>
+</body>
+</html>
