@@ -3,9 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=, initial-scale=1.0">
-    <title>Document</title>
+    <title>Suma de una Matriz</title>
+    <!-- 4a. Escriba un programa JavaScript para calcular la suma de una matriz de números enteros. Ejemplo: var array = [1, 2, 3, 4, 5, 6] Resultado esperado: 21 -->
 </head>
 <body>
-    
+    <h1>Suma de una Matriz de Números Enteros</h1>
+    <script>
+        function sumarMatriz(matriz) { // Función para sumar los elementos de una matriz
+            let suma = 0; 
+            for (let i = 0; i < matriz.length; i++) { // se le hace un recorrido a la matriz por medio de un ciclo for
+                suma += matriz[i]; // Se va acumulando la suma de los elementos
+            }
+            return suma;
+        }
+
+        // Ejemplo de uso
+        var array = [1, 2, 3, 4, 5, 226]; 
+        var resultado = sumarMatriz(array);
+        document.write("La suma de la matriz [" + array.join(", ") + "] es: " + resultado); 
+    </script>
 </body>
 </html>
