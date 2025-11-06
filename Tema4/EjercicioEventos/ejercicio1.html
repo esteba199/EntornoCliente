@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Cambio de imagen con clic</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f4f4;
+    }
+
+    img {
+      width: 300px;
+      height: auto;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    img:active {
+      transform: scale(0.98);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Imagen inicial -->
+  <img id="imagen" src="https://cdn-0.somosmamas.com.ar/wp-content/uploads/2021/12/2-8-1320x880.jpg" alt="Imagen principal">
+
+  <script>
+    const img = document.getElementById("imagen");
+
+    // Al mantener pulsado el clic cambia la imagen
+    img.addEventListener("mousedown", () => {
+      img.src = "https://th.bing.com/th/id/OIP.PgfOQDbKlhIFy55bLM8SnAHaFj?w=242&h=181&c=7&r=0&o=7&pid=1.7&rm=3"; // Cambia a la segunda imagen
+    });
+
+    // Al soltar el clic vuelve a la imagen original
+    img.addEventListener("mouseup", () => {
+      img.src = "https://th.bing.com/th/id/OIP.PgfOQDbKlhIFy55bLM8SnAHaFj?w=242&h=181&c=7&r=0&o=7&pid=1.7&rm=3"; // Regresa a la primera imagen
+    });
+
+    // También vuelve a la original si el clic se suelta fuera de la imagen
+    img.addEventListener("mouseleave", () => {
+      img.src = "https://cdn-0.somosmamas.com.ar/wp-content/uploads/2021/12/2-8-1320x880.jpg"; // Regresa a la primera imagen
+    });
+  </script>
+
+</body>
+</html>
