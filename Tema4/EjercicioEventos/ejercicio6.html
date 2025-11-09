@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 6</title>
+</head>
+<body>
+  <h2>Pulsa una tecla</h2>
+  <p id="info"></p>
+
+  <script>
+    const info = document.getElementById("info");
+
+    document.addEventListener("keydown", function(evento) {
+      let mensaje = "Tecla pulsada: " + evento.key;
+
+      if (evento.altKey) mensaje += " + ALT";
+      if (evento.shiftKey) mensaje += " + SHIFT";
+      if (evento.ctrlKey) mensaje += " + CTRL";
+
+      info.textContent = mensaje;
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 3</title>
+</head>
+<body>
+  <h2>No se puede usar el botón derecho</h2>
+
+  <script>
+    document.addEventListener("contextmenu", function(evento) {
+      evento.preventDefault(); // Evita que aparezca el menú del botón derecho
+      alert("Botón derecho deshabilitado.");
+    });
+  </script>
+</body>
+</html>

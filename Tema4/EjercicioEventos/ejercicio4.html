@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 4</title>
+</head>
+<body>
+  <h2>Haz clic en cualquier parte de la pantalla</h2>
+
+  <script>
+    document.addEventListener("mousedown", function(evento) {
+      if (evento.button === 0) {
+        alert("Has hecho clic con el botón IZQUIERDO.");
+      } else if (evento.button === 2) {
+        alert("Has hecho clic con el botón DERECHO.");
+      }
+    });
+
+    // Evitar menú del clic derecho
+    document.addEventListener("contextmenu", e => e.preventDefault());
+  </script>
+</body>
+</html>

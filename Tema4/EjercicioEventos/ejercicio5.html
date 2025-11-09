@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 5</title>
+</head>
+<body>
+  <img src="gatoco.jpg" width="200">
+  <img src="perrito.jpg" width="200">
+  <img src="motomoto.jpg" width="200">
+
+  <script>
+    const imagenes = document.querySelectorAll("img");
+
+    imagenes.forEach(img => {
+      img.addEventListener("mouseover", () => {
+        alert("URL de la imagen: " + img.src);
+      });
+    });
+  </script>
+</body>
+</html>
