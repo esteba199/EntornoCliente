@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analizador de Texto</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Analizador de Texto</h1>
+            <p class="subtitle">Cuenta la frecuencia de palabras en tu texto</p>
+        </header>
+        
+        <div class="content">
+            <div class="input-section">
+                <h2>Ingresa tu texto</h2>
+                <textarea id="texto" placeholder="Escribe o pega tu texto aquí..."></textarea>
+                <button id="analizar">Analizar Texto</button>
+                
+                <div class="example">
+                    <p><strong>Ejemplo:</strong> "Hola mundo. Hola JavaScript, mundo JavaScript JavaScript!"</p>
+                    <button id="ejemplo">Probar con ejemplo</button>
+                </div>
+            </div>
+            
+            <div class="results" id="resultados" style="display: none;">
+                <h2>Resultados del análisis</h2>
+                <div class="word-count">
+                    <div>
+                        <span id="total-palabras">0</span>
+                        <p>Palabras totales</p>
+                    </div>
+                    <div>
+                        <span id="palabras-unicas">0</span>
+                        <p>Palabras únicas</p>
+                    </div>
+                    <div>
+                        <span id="palabra-mas-repetida">0</span>
+                        <p>Máx. repeticiones</p>
+                    </div>
+                </div>
+                
+                <table id="tabla-resultados">
+                    <thead>
+                        <tr>
+                            <th>Palabra</th>
+                            <th>Frecuencia</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Los resultados se insertarán aquí -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Función analizarTexto según el enunciado
+        function analizarTexto(texto) {
+            // Eliminar signos de puntuación y convertir a minúsculas
+            const textoLimpio = texto.replace(/[.,;:!?]/g, '').toLowerCase();
+            
+            // Dividir en palabras
+            const palabras = textoLimpio.split(/\s+/).filter(palabra => palabra.length > 0);
+            
+            // Crear Map para contar palabras
+            const contador = new Map();
+            
+            // Contar cada palabra
+            palabras.forEach(palabra => {
+                if (contador.has(palabra)) {
+                    contador.set(palabra, contador.get(palabra) + 1);
+                } else {
+                    contador.set(palabra, 1);
+                }
+            });
+            
+            return contador;
+        }
+        
+        // Elementos del DOM
+        const textoInput = document.getElementById('texto');
+        const analizarBtn = document.getElementById('analizar');
+        const ejemploBtn = document.getElementById('ejemplo');
+        const resultadosDiv = document.getElementById('resultados');
+        const tablaResultados = document.getElementById('tabla-resultados').getElementsByTagName('tbody')[0];
+        const totalPalabrasSpan = document.getElementById('total-palabras');
+        const palabrasUnicasSpan = document.getElementById('palabras-unicas');
+        const palabraMasRepetidaSpan = document.getElementById('palabra-mas-repetida');
+        
+        // Función para mostrar resultados
+        function mostrarResultados(contador) {
+            // Limpiar tabla anterior
+            tablaResultados.innerHTML = '';
+            
+            let totalPalabras = 0;
+            let maxRepeticiones = 0;
+            
+            // Ordenar palabras por frecuencia (descendente)
+            const palabrasOrdenadas = [...contador.entries()].sort((a, b) => b[1] - a[1]);
+            
+            // Agregar filas a la tabla
+            palabrasOrdenadas.forEach(([palabra, frecuencia]) => {
+                const fila = tablaResultados.insertRow();
+                const celdaPalabra = fila.insertCell(0);
+                const celdaFrecuencia = fila.insertCell(1);
+                
+                celdaPalabra.textContent = palabra;
+                celdaFrecuencia.textContent = frecuencia;
+                
+                totalPalabras += frecuencia;
+                if (frecuencia > maxRepeticiones) {
+                    maxRepeticiones = frecuencia;
+                }
+            });
+            
+            // Actualizar estadísticas
+            totalPalabrasSpan.textContent = totalPalabras;
+            palabrasUnicasSpan.textContent = contador.size;
+            palabraMasRepetidaSpan.textContent = maxRepeticiones;
+            
+            // Mostrar resultados
+            resultadosDiv.style.display = 'block';
+        }
+        
+        // Evento para el botón Analizar
+        analizarBtn.addEventListener('click', () => {
+            const texto = textoInput.value.trim();
+            
+            if (texto === '') {
+                alert('Por favor, ingresa algún texto para analizar.');
+                return;
+            }
+            
+            const contador = analizarTexto(texto);
+            mostrarResultados(contador);
+        });
+        
+        // Evento para el botón de ejemplo
+        ejemploBtn.addEventListener('click', () => {
+            textoInput.value = "Hola mundo. Hola JavaScript, mundo JavaScript JavaScript!";
+            const contador = analizarTexto(textoInput.value);
+            mostrarResultados(contador);
+        });
+        
+        // Ejecutar análisis al presionar Enter en el textarea
+        textoInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && e.ctrlKey) {
+                analizarBtn.click();
+            }
+        });
+    </script>
+</body>
+</html>
