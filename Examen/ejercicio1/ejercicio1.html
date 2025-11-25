@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Por teclado</title>
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #f5f5f5;
+    }
+    h1 {
+        color: #333;
+        text-align: center;
+    }
+</style>
+<body>
+    <h1>Patrón de asteriscos</h1>
+    <script>
+        let numero = parseInt(prompt("Introduce un número para construir el patrón de asteriscos:"));
+
+        for (let i = numero; i >= 1; i--) {     // Bucle para cada fila y disminuir el número de asteriscos y aumentar los espacios.
+            let espacios = ' '.repeat(numero - i);  // Calcular los espacios necesarios y repetirlos y almacenarlos en una variable.
+            let asteriscos = '*'.repeat(i);    // Calcular los asteriscos necesarios y repetirlos y almacenarlos en una variable. 
+            // imprimimos los espacios y los asteriscos.
+            document.write(espacios + asteriscos + '<br>'); 
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Ejercicio 4 - expresión de función</title>
+</head>
+<body>
+    <h1>Ejercicio 4 — convertir declaración a expresión</h1>
+    <p>Se transforma <code>function greet() { return "Hola"; }</code> a expresión de función.</p>
+    <button id="saluda">Saludar</button>
+    <p>Mensaje: <span id="msg">—</span></p>
+
+    <script>
+        // Declaración original (para referencia):
+        // function greet() { return "Hola"; }
+
+
+        // Versión como expresión de función asignada a una constante
+        const greet = function () {
+        // Aquí podrías añadir más lógica si quieres
+        return 'Hola';
+        };
+
+
+        // Uso en la UI
+        document.getElementById('saluda').addEventListener('click', function () {
+        document.getElementById('msg').textContent = greet();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Ejercicio sencillo con 6 elementos</title>
+
+</head>
+<body>
+  <h1>Ejercicio con 6 elementos</h1>
+  <button id="btn">Introducir valores</button>
+  <pre id="resultado">Pulsa el botón para comenzar...</pre>
+
+  <script>
+    const btn = document.getElementById('btn');
+    const resultado = document.getElementById('resultado');
+
+    btn.addEventListener('click', () => {
+      let b1, b2, n1, n2, s1, s2;
+
+      // Pedir valores hasta que no haya ninguno nulo
+      while (true) {
+        b1 = prompt("Primer valor booleano (true/false):");
+        b2 = prompt("Segundo valor booleano (true/false):");
+        n1 = prompt("Primer número:");
+        n2 = prompt("Segundo número:");
+        s1 = prompt("Primera cadena:");
+        s2 = prompt("Segunda cadena:");
+
+        if ([b1,b2,n1,n2,s1,s2].some(v => v === null || v.trim() === "")) {
+          alert("Debes introducir todos los valores.");
+          continue;
+        }
+
+        // Convertir tipos
+        b1 = b1.toLowerCase() === "true";
+        b2 = b2.toLowerCase() === "true";
+        n1 = Number(n1);
+        n2 = Number(n2);
+
+        if (isNaN(n1) || isNaN(n2)) {
+          alert("Los valores numéricos deben ser números.");
+          continue;
+        }
+
+        break; // todo correcto
+      }
+
+      // Comparar cadenas
+      let textoMayor = s1 > s2 ? s1 : s2;
+
+      // Operaciones lógicas
+      const logica1 = b1 && b2;
+      const logica2 = b1 || b2;
+
+      // Operaciones aritméticas
+      const suma = n1 + n2;
+      const resta = n1 - n2;
+
+      // Crear nuevo array: booleanos, cadenas, números (cada par ordenado de mayor a menor)
+      const bools = [b1, b2].sort((a,b)=>b-a); // true > false
+      const cadenas = [s1, s2].sort().reverse(); // alfabéticamente descendente
+      const numeros = [n1, n2].sort((a,b)=>b-a);
+      const nuevoArray = [...bools, ...cadenas, ...numeros];
+
+      // Mostrar resultados
+      resultado.textContent = ` Comparación de cadenas:
+  </script>
+</body>
+</html>

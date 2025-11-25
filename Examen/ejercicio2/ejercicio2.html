@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>modulos</title>
+</head>
+<style>
+        body {
+        font-family: Arial, sans-serif;
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #f5f5f5;
+    }
+    h1 {
+        color: #333;
+        text-align: center;
+    }
+</style>
+<body>
+  <h1>Módulos Mar de Cádiz</h1>
+
+  <div class="ca">
+    <label for="opciones">Opciones:</label>
+    <select id="opciones"> <!--para los botones-->
+      <option value="a">a) Mostrar cuántos módulos hay</option>
+      <option value="b">b) Mostrar el contenido de la estructura</option>
+      <option value="c">c) Devolver las abreviaturas (claves) de todos los módulos</option>
+      <option value="d">d) Devolver el nombre completo de todos los módulos</option>
+      <option value="e">e) Consultar si está el módulo "DAW"</option>
+      <option value="g">g) Si está, eliminarlo y volver a mostrar todos los módulos</option>
+    </select>
+    <button id="ejecutar">Ejecutar</button>
+  </div>
+
+  <div class="card">
+    <h2>Resultado</h2>
+    <pre id="salida">Aquí aparecerá el resultado...</pre>
+  </div>   
+
+<script>
+    // 1) Crear la estructura Map vacía (sin datos inicialmente)
+    const modulos = new Map();
+
+    // 2) Añadir la información posterior a la creación de la estructura
+    // (al menos 4 módulos). Incluimos además la clave "DAW" para poder
+    // demostrar la comprobación y eliminación solicitada.
+    modulos.set('DWEC', 'Desarrollo web en entorno cliente');
+    modulos.set('DWES', 'Desarrollo web en entorno servidor');
+    modulos.set('ING',   'Ingles Tecnico');
+    modulos.set('DAW',  'Desarrollo de Aplicaciones Web');
+
+    // Acceso al DOM
+    const select = document.getElementById('opciones');
+    const btn = document.getElementById('ejecutar');
+    const salida = document.getElementById('salida');
+
+    // Funciones que realizan cada tarea
+    function opcionA() {
+      return `Hay ${modulos.size} módulos almacenados.`;
+    }
+
+    function opcionB() {
+      // Mostrar contenido de la estructura (clave -> valor)
+      if (modulos.size === 0) return 'La estructura está vacía.';
+      let lines = [];
+      for (const [abre, nombre] of modulos.entries()) {
+        lines.push(`${abre} -> ${nombre}`);
+      }
+      return lines.join('\n');
+    }
+
+    function opcionC() {
+      // Devolver abreviaturas (claves)
+      return Array.from(modulos.keys()).join(', ') || 'No hay claves.';
+    }
+
+    function opcionD() {
+      // Devolver nombres completos (valores)
+      return Array.from(modulos.values()).join('\n') || 'No hay valores.';
+    }
+
+    function opcionE() {
+      // Consultar si está el módulo "DAW"
+      return modulos.has('DAW')
+        ? 'El módulo "DAW" está presente en la estructura.'
+        : 'El módulo "DAW" NO está presente en la estructura.';
+    }
+
+    function opcionG() {
+      // Si está, eliminarlo y volver a mostrar todos los módulos
+      if (!modulos.has('DAW')) {
+        return 'El módulo "DAW" no estaba presente; nada que eliminar.\n\n' + opcionB();
+      }
+      modulos.delete('DAW');
+      return 'Módulo "DAW" eliminado.\n\nMódulos restantes:\n' + opcionB(); 
+    }
+
+    // Manejador del botón
+    btn.addEventListener('click', () => {
+      const opcion = select.value;
+      let resultado = ''; 
+      switch (opcion) {
+        case 'a': resultado = opcionA(); break;
+        case 'b': resultado = opcionB(); break;
+        case 'c': resultado = opcionC(); break;
+        case 'd': resultado = opcionD(); break;
+        case 'e': resultado = opcionE(); break;
+        case 'g': resultado = opcionG(); break;
+        default: resultado = 'Opción no reconocida.';
+      }
+      salida.textContent = resultado;
+    });
+  </script>
+</body>
+</html>

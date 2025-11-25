@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Ejercicio 1  operar(a,b,callback)</title>
+</head>
+    <body>
+        <h1>Ejercicio 1  operar(a, b, callback)</h1>
+        <p>Introduce dos números y pulsa la operación que quieras:</p>
+            <input id="a" type="number" placeholder="a" />
+            <input id="b" type="number" placeholder="b" />
+            <button id="btn-suma">Suma</button>
+            <button id="btn-resta">Resta</button>
+            <button id="btn-mult">Multiplicación</button>
+        <p>Resultado: <span id="resultado">—</span></p>
+        <script>
+                // Función operar: recibe a, b y un callback que realiza la operación
+                function operar(a, b, callback) {
+                // Validamos que a y b sean números (conversión segura)
+                    const x = Number(a);
+                    const y = Number(b);
+                        return callback(x, y);
+                }
+
+
+                // Definimos las operaciones que usará el callback
+                const suma = (x, y) => x + y;
+                const resta = (x, y) => x - y;
+                const multiplicacion = (x, y) => x * y;
+
+
+                // Enlazamos los botones con el DOM
+                const elA = document.getElementById('a');
+                const elB = document.getElementById('b');
+                const salida = document.getElementById('resultado');
+
+
+                document.getElementById('btn-suma').addEventListener('click', function () {
+                // Usamos operar pasando la función suma como callback
+                    const res = operar(elA.value, elB.value, suma);
+                    salida.textContent = res;
+                });
+
+
+                document.getElementById('btn-resta').addEventListener('click', function () {
+                    const res = operar(elA.value, elB.value, resta);
+                    salida.textContent = res;
+                });
+
+
+                document.getElementById('btn-mult').addEventListener('click', function () {
+                    const res = operar(elA.value, elB.value, multiplicacion);
+                    salida.textContent = res;
+                });
+        </script>
+    </body>
+</html>

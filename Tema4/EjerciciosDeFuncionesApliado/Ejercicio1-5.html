@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicios Recursión</title>
+</head>
+<body>
+    <h2>Listar Archivos</h2>
+    <pre id="archivos"></pre>
+    <h2>Permutaciones</h2>
+    <pre id="permutaciones"></pre>
+
+    <script>
+    const filesystem = { // Simulación de un sistema de archivos
+    carpeta1: { // carpeta1
+        archivo1: null,
+        archivo2: null,
+        subcarpeta: {
+        archivo3: null
+        }
+    },
+    archivo4: null // archivo en la raíz
+    };
+
+    function listarArchivos(obj) { // Función recursiva para listar archivos
+    let archivos = [];
+    for (let key in obj) { // Recorremos cada clave del objeto
+        if (obj[key] === null) { // Si es un archivo
+        archivos.push(key); // Si es un archivo, lo añadimos al array
+        } else {
+        archivos = archivos.concat(listarArchivos(obj[key])); // Si es una carpeta, llamamos recursivamente
+        }
+    }
+    return archivos;
+    }
+
+    function permutar(arr) {// Función recursiva para generar permutaciones
+    if (arr.length === 0) return [[]]; // Caso base: una permutación del array vacío es un array vacío
+    const result = []; 
+    for (let i = 0; i < arr.length; i++) {// Recorremos cada elemento del array
+        const current = arr[i];// Elegimos el elemento actual
+        const remaining = arr.slice(0, i).concat(arr.slice(i + 1)); // Obtenemos los elementos restantes
+        const perms = permutar(remaining); // Llamada recursiva para permutar los elementos restantes
+        for (let perm of perms) { // Combinamos el elemento actual con cada permutación de los restantes
+        result.push([current, ...perm]); // Añadimos la nueva permutación al resultado
+        }
+    }
+    return result;
+    }
+
+    // Mostrar resultados en el HTML
+    document.getElementById('archivos').textContent = JSON.stringify(listarArchivos(filesystem), null, 2);
+    document.getElementById('permutaciones').textContent = JSON.stringify(permutar([1,2,3]), null, 2);
+    </script>
+</body>
+</html>

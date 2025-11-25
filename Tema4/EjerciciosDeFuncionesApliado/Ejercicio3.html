@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Ejercicio 3 - validador de longitud</title>
+</head>
+<body>
+    <h1>Ejercicio 3 — validador (expresión de función)</h1>
+    <p>Comprueba si una cadena tiene más de 10 caracteres:</p>
+    <input id="texto" type="text" placeholder="Escribe algo..." />
+    <button id="comprobar">Comprobar</button>
+    <p>¿Más de 10 caracteres? <strong id="ok">—</strong></p>
+    
+    <script>
+        // Expresión de función asignada a la constante 'validarCadena'
+        // Devuelve true si la longitud del texto es mayor que 10
+        const validarCadena = function (texto) {
+        return String(texto).length > 10;
+        };
+
+        // Enlazamos la interacción
+        document.getElementById('comprobar').addEventListener('click', function () {
+        const valor = document.getElementById('texto').value;
+        const esValida = validarCadena(valor);
+        document.getElementById('ok').textContent = esValida ? 'Sí' : 'No';
+        });
+    </script>
+</body>
+</html>

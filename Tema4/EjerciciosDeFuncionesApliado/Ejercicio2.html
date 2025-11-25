@@ -1,0 +1,37 @@
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Ejercicio 2 crearSumador</title>
+</head>
+<body>
+    <h1>Ejercicio 2 función que devuelve otra función</h1>
+    <p>Crea un sumador con un valor fijo y úsalo:</p>
+        <label>Valor fijo: <input id="fijo" type="number" value="5" /></label>
+        <label>Valor a sumar: <input id="num" type="number" value="10" /></label>
+        <button id="crear">Crear sumador y sumar</button>
+    <p>Resultado: <span id="res">—</span></p>
+    <script>
+        // crearSumador devuelve una función que añade el número 'fijo' a su argumento
+        function crearSumador(fijo) {
+        // Se devuelve una función cerrada (closure) que recuerda 'fijo'
+        return function (numero) {
+        return Number(numero) + Number(fijo);
+        };
+    }
+        // Manejo de la UI
+        const inputFijo = document.getElementById('fijo');
+        const inputNum = document.getElementById('num');
+        const salida = document.getElementById('res');
+
+
+        document.getElementById('crear').addEventListener('click', function () {
+        // Creamos el sumador con el valor fijo actual
+        const sumador = crearSumador(inputFijo.value);
+        // Llamamos al sumador con el número introducido
+        const resultado = sumador(inputNum.value);
+        salida.textContent = resultado;
+        });
+    </script>
+</body>
+</html>

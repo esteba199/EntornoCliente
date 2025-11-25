@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+    <head>
+    <meta charset="utf-8">
+<title>Ejercicio 4 - listar archivos</title>
+</head>
+<body>
+    <h1>Ejercicio 4 — listar archivos (recursivo)</h1>
+    <button id="listar">Listar archivos</button>
+    <p><strong>Resultado:</strong> <span id="res">—</span></p>
+
+
+    <script>
+    const fs = { // Simulación de un sistema de archivos
+        carpeta1: {
+        archivo1: "contenido1",
+        archivo2: "contenido2",
+        subcarpeta: {
+        archivo3: "contenido3"}
+        },
+    carpeta2: {
+    archivo4: "contenido4"
+    }
+    };
+
+
+    // Función recursiva
+    function listarArchivos(obj) { // Recibe un objeto que representa el sistema de archivos
+    let archivos = [];
+
+
+    for (let clave in obj) { // Recorremos cada clave del objeto
+    if (typeof obj[clave] === "string") {
+    archivos.push(clave); // Si es un archivo (string), lo añadimos al array
+    } else {
+    archivos = archivos.concat(listarArchivos(obj[clave])); // Si es una carpeta (objeto), llamamos recursivamente
+    }
+    }
+
+
+    return archivos;
+    }
+
+    document.getElementById('listar').onclick = () => {
+    document.getElementById('res').textContent = JSON.stringify(listarArchivos(fs)); // Mostrar el resultado
+    };
+    </script>
+</body>
+</html>

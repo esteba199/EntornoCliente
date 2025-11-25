@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Ejercicio 3 - aplanar</title>
+</head>
+<body>
+    <h1>Ejercicio 3 — función recursiva aplanar</h1>
+    <p>Array de prueba: [1, [2, [3, 4]], 5]</p>
+    <button id="aplanar">Aplanar</button>
+    <p><strong>Resultado:</strong> <span id="res">—</span></p>
+
+
+    <script>
+    // Función recursiva aplanar
+    function aplanar(arr) { // Recibe un array que puede tener arrays anidados
+    let resultado = []; // Array para almacenar el resultado
+
+
+    for (let elemento of arr) { // Recorremos cada elemento del array
+    if (Array.isArray(elemento)) { // Si el elemento es un array
+    resultado = resultado.concat(aplanar(elemento));
+    } else {
+    resultado.push(elemento); // Si no es un array, lo añadimos al resultado
+    }
+    }
+
+
+    return resultado;
+    }
+
+
+    document.getElementById('aplanar').onclick = () => { // Manejo de la UI
+    const arr = [1, [2, [3, 4]], 5]; // Array de prueba
+    document.getElementById('res').textContent = JSON.stringify(aplanar(arr)); // Mostrar el resultado
+    };
+    </script>
+</body>
+</html>

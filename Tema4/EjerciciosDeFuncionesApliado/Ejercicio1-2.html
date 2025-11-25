@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Ejercicio 2 - operar</title>
+</head>
+<body>
+    <h1>Ejercicio 2 — operar con callback</h1>
+    <input id="a" type="number" placeholder="Número 1" />
+    <input id="b" type="number" placeholder="Número 2" />
+    <button id="suma">Suma</button>
+    <button id="resta">Resta</button>
+    <button id="multi">Multiplicación</button>
+    <button id="sumamul">Suma + Multiplicación</button>
+    <p><strong>Resultado:</strong> <span id="res">—</span></p>
+
+
+    <script>
+    // Función operar
+    function operar(a, b, callback) { // Recibe dos números y un callback
+    return callback(Number(a), Number(b)); // Convertimos a y b a números y llamamos al callback
+    }
+
+
+    // Operaciones como funciones flecha
+    const suma = (x, y) => x + y; // función flecha
+    const resta = (x, y) => x - y;
+    const multiplicacion = (x, y) => x * y; // función flecha
+    const suma_mul = (x, y) => x + y + x * y;
+
+
+    // UI
+    const res = document.getElementById('res'); // salida
+    const A = document.getElementById('a'); // input a
+    const B = document.getElementById('b');
+
+
+    document.getElementById('suma').onclick = () => res.textContent = operar(A.value, B.value, suma);
+    document.getElementById('resta').onclick = () => res.textContent = operar(A.value, B.value, resta);
+    document.getElementById('multi').onclick = () => res.textContent = operar(A.value, B.value, multiplicacion);
+    document.getElementById('sumamul').onclick = () => res.textContent = operar(A.value, B.value, suma_mul);
+    </script>
+</body>
+</html>
