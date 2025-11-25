@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Palos del Flamenco</title>
+<style>
+    body { font-family: Arial; margin: 20px; }
+    .compas span { margin-right: 8px; font-size: 20px; }
+    .fuerte { font-weight: bold; }
+</style>
+</head>
+<body>
+
+<h1>Palos del Flamenco</h1>
+
+<h2>Opción 1: Selecciona un palo para ver todos sus datos</h2>
+
+<select id="selectPalo">
+    <option value="">Seleccione un palo</option>
+</select>
+
+<p id="datosPalo"></p>
+<div id="compasPalo" class="compas"></div>
+
+<hr>
+
+<h2>Opción 2: Consulta un dato específico del palo</h2>
+
+<select id="selectPaloDato">
+    <option value="">Seleccione un palo</option>
+</select>
+
+<select id="selectDato">
+    <option value="">Seleccione un dato</option>
+    <option value="palo">Palo</option>
+    <option value="tempo">Tempo</option>
+    <option value="letra">Tipo de letra</option>
+</select>
+
+<p id="datoEspecifico"></p>
+
+<script>
+    // Datos de los palos flamencos y sus características 
+const palos = [
+    {
+        palo: "Soleá", 
+        tempo: "Moderado / Lento",
+        letra: "Profunda, seria",
+        compasFuerte: [3, 6, 8, 10, 12]
+    },
+    {
+        palo: "Bulerías",
+        tempo: "Rápido",
+        letra: "Festera, humorística",
+        compasFuerte: [12, 3, 6, 8, 10]
+    },
+    {
+        palo: "Seguiriya",
+        tempo: "Lento / Dramático",
+        letra: "Trágica, profunda",
+        compasFuerte: [1, 3, 5, 8]
+    },
+    {
+        palo: "Tientos / Tangos",
+        tempo: "Tientos: lento — Tangos: rápido",
+        letra: "Pasional",
+        compasFuerte: [1, 3]
+    },
+    {
+        palo: "Fandangos",
+        tempo: "Variado",
+        letra: "Libre o a compás",
+        compasFuerte: [1, 4]
+    },
+    {
+        palo: "Alegrías",
+        tempo: "Vivo",
+        letra: "Alegre",
+        compasFuerte: [3, 6, 8, 10, 12]
+    },
+    { 
+        palo: "Taranto / Taranta", 
+        tempo: "Libre / Lento",
+        letra: "Dramática, minera",
+        compasFuerte: []   //
+    }
+];
+// para llenar los selects se utilizan los mismos datos 
+const select1 = document.getElementById("selectPalo"); // Opción 1
+const select2 = document.getElementById("selectPaloDato");// Opción 2
+
+// Rellenar los selects con los palos disponibles y sus opciones
+palos.forEach(p => {
+    let opt = document.createElement("option");
+    opt.value = p.palo;
+    opt.textContent = p.palo;
+    select1.appendChild(opt.cloneNode(true));
+    select2.appendChild(opt);
+});
+// Manejar el cambio de selección en la Opción 1 y mostrar los datos correspondientes 
+select1.addEventListener("change", () => {
+    const p = palos.find(x => x.palo === select1.value); // Palo seleccionado y sus datos
+    const cont = document.getElementById("datosPalo"); // Contenedor de datos
+    const comp = document.getElementById("compasPalo");
+
+    if (!p) { cont.textContent = ""; comp.innerHTML = ""; return; } // Si no hay selección, limpiar
+
+    // Mostrar los datos del palo seleccionado
+    cont.innerHTML = ` 
+        <strong>Palo:</strong> ${p.palo}<br>
+        <strong>Tempo:</strong> ${p.tempo}<br>
+        <strong>Tipo de letra:</strong> ${p.letra}<br>
+    `;
+    // Mostrar el compás con los tiempos fuertes destacados
+    comp.innerHTML = "";
+    for (let i = 1; i <= 12; i++) { // Compás de 12 tiempos y resaltar los fuertes
+        const span = document.createElement("span");
+        span.textContent = i;
+        if (p.compasFuerte.includes(i)) span.classList.add("fuerte");
+        comp.appendChild(span);
+    }
+});
+
+document.getElementById("selectDato").addEventListener("change", mostrarDato); // Manejar el cambio en la selección de la Opción 2
+select2.addEventListener("change", mostrarDato);
+
+function mostrarDato() {
+    const paloSel = select2.value;
+    const datoSel = document.getElementById("selectDato").value;
+    const salida = document.getElementById("datoEspecifico");
+
+    if (!paloSel || !datoSel) {
+        salida.textContent = "";
+        return;
+    }
+
+    const p = palos.find(x => x.palo === paloSel);
+    salida.textContent = `${datoSel.toUpperCase()}: ${p[datoSel]}`;
+}
+</script>
+
+</body>
+</html>
